@@ -2,14 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tecnologia;
 use Illuminate\Http\Request;
 
 class ClassicController extends Controller
 {
     function index(string $dificuldade)
     {
+          $tecnologias = Tecnologia::all();
+
+          $random = rand(0, $tecnologias->count() - 1);
+          $primeiraTecnologia = $tecnologias
+          ->skip($random)->take(1);
+
         return view("classic/index", [
-            "dificuldade" => $dificuldade
+            "dificuldade" => $dificuldade,
+            "tecnologias" => $tecnologias,
+            'tecnologia' => $primeiraTecnologia->first()->id
+
         ]);
     }
 

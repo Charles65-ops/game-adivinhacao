@@ -24,6 +24,24 @@
     </div>
 
     <img id="guess-image" class="img-portrait" alt="Imagem a ser adivinhada"/>
-</body>
+    <div class="container-vidas">
+        <span>☕</span>
+        <span>☕</span>
+        <span>☕</span>
+        <span>☕</span>
+        <span>☕</span>
+        <div class="select-container">
+        <div class="select-container">
+    <select id="tec-select">
+        @foreach ($tecnologias as $tec)
+            <option value="{{ $tec->id }}">{{ $tec->nome }}</option>
+        @endforeach
+    </select>
+</div>
 
-</html>
+
+    <!-- Botão Adivinhar -->
+    <div class="buttons-container">
+        <button class="button" id="guess-button">Adivinhar</button>
+    </div>
+</div>

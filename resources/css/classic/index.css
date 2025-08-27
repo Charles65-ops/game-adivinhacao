@@ -1,17 +1,289 @@
+body {
+    background: black; /* Fundo escuro para destacar os elementos */
+    color: #00ffcc; /* Cor padrão estilo neon */
+    font-family: "Share Tech", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Nome do jogo em destaque */
 .game-name {
     font-family: "Share Tech", sans-serif;
     font-weight: 400;
-    font-style: normal;
     text-align: center;
-    color: white;
-    margin: 0;
+    color: #ff0066; /* Rosa neon */
+    font-size: 3rem;
+    margin: 20px 0;
+    text-shadow: 0 0 5px #ff0066, 
+                 0 0 10px #ff3399, 
+                 0 0 20px #ff66cc;
+    letter-spacing: 3px;
 }
 
+/* Dificuldade do jogo em estilo de terminal retrô */
 .game-difficulty {
     font-family: "Share Tech Mono", monospace;
     font-weight: 400;
-    font-style: normal;
     text-align: center;
-    color: white;
+    color: #00ffcc; /* Verde-água neon */
+    font-size: 1.5rem;
+    margin: 10px 0;
+    text-shadow: 0 0 5px #00ffcc, 
+                 0 0 10px #00ffff;
+}
+
+/* Botão estilo fliperama */
+.button {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    border: 2px solid #ffcc00;
+    padding: 10px 20px;
+    font-family: "Share Tech Mono", monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 10px;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 0 0 5px #ffcc00;
+}
+
+.button:hover {
+    background: #ffcc00;
+    color: black;
+    text-shadow: none;
+}
+
+/* Moldura estilo arcade */
+.container {
+    border: 4px solid #00ffcc;
+    padding: 20px;
+    margin: 30px auto;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 15px #00ffcc, 
+                0 0 30px #ff0066;
+    border-radius: 8px;
+}
+/* Fundo com scanlines */
+body {
     margin: 0;
+    padding: 0;
+    font-family: "Share Tech", sans-serif;
+    background: #0a0a0a url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Scanlines animadas */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    animation: scanline 1s linear infinite;
+}
+
+@keyframes scanline {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 3px; }
+}
+
+/* Container arcade neon */
+.container {
+    border: 4px solid #00ffcc;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px 20px;
+    background: rgba(0, 0, 0, 0.85);
+    box-shadow: 0 0 15px #00ffcc, 0 0 40px #ff0066, 0 0 60px #ff33aa;
+    position: relative;
+    z-index: 1;
+}
+
+/* Nome do jogo estilo neon piscante */
+.game-name {
+    font-family: "Share Tech", sans-serif;
+    font-size: 4rem;
+    margin: 0;
+    color: #ff0066;
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 5px #ff0066,
+        0 0 15px #ff3399,
+        0 0 25px #ff66cc,
+        0 0 40px #ff99cc,
+        0 0 60px #ffccff;
+    animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.6; }
+}
+
+/* Dificuldade estilo terminal retrô */
+.game-difficulty {
+    font-family: "Share Tech Mono", monospace;
+    font-size: 1.7rem;
+    margin-top: 10px;
+    color: #00ffcc;
+    text-shadow: 0 0 5px #00ffcc, 0 0 15px #00ffff, 0 0 25px #00ccff;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.4; }
+}
+
+/* Imagem a ser adivinhada com neon glow */
+.img-portrait {
+    display: block;
+    margin: 30px auto;
+    width: 250px;
+    height: auto;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 0 15px #ffcc00, 0 0 25px #ffaa00, 0 0 40px #ff9900;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-portrait:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #ffcc00, 0 0 50px #ffaa00, 0 0 70px #ff9900;
+}
+
+/* Vidas estilo retrô neon */
+.container-vidas {
+    margin-top: 20px;
+    font-size: 2rem;
+    color: #ffcc00;
+    text-shadow: 0 0 5px #ffcc00, 0 0 15px #ffaa00, 0 0 25px #ff9900;
+    animation: glow 1.5s infinite alternate;
+}
+
+.container-vidas span {
+    margin: 0 5px;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #ffcc00, 0 0 15px #ffaa00, 0 0 25px #ff9900; }
+    to   { text-shadow: 0 0 15px #ffcc00, 0 0 25px #ffaa00, 0 0 35px #ff9900; }
+}
+
+/* Botões estilo fliperama */
+.button {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    border: 2px solid #ffcc00;
+    padding: 12px 25px;
+    font-family: "Share Tech Mono", monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 10px;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 0 0 5px #ffcc00;
+}
+
+.button:hover {
+    background: #ffcc00;
+    color: black;
+    text-shadow: none;
+}
+
+/* Canvas de partículas neon */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
+}
+/* Container para alinhar os botões */
+.buttons-container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Botões estilo fliperama (já existente no CSS completo) */
+.button {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    border: 2px solid #ffcc00;
+    padding: 12px 25px;
+    font-family: "Share Tech Mono", monospace;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 10px;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 0 0 5px #ffcc00;
+}
+
+.button:hover {
+    background: #ffcc00;
+    color: black;
+    text-shadow: none;
+}
+
+/* Container para centralizar o select */
+.select-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Select estilo arcade neon */
+#tec-select {
+    padding: 12px 15px;
+    font-family: "Share Tech Mono", monospace;
+    font-size: 1.2rem;
+    border: 2px solid #ffcc00; /* Borda neon dourada */
+    border-radius: 8px;
+    background: #111; /* Fundo escuro */
+    color: #00ffcc; /* Texto verde água neon */
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffff;
+    outline: none;
+    transition: all 0.3s ease;
+    appearance: none; /* Remove estilo padrão do navegador */
+    cursor: pointer;
+}
+
+/* Efeito hover e foco */
+#tec-select:hover,
+#tec-select:focus {
+    border-color: #ff33aa; /* Muda a borda para rosa neon */
+    box-shadow: 0 0 10px #ff33aa, 0 0 20px #ff66cc;
+}
+
+/* Estilizando o dropdown arrow (para Chrome/Edge) */
+#tec-select::-ms-expand {
+    display: none;
 }
