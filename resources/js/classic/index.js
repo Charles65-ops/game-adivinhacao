@@ -1,58 +1,49 @@
-// Cria canvas de partículas
-const canvas = document.createElement('canvas');
-canvas.id = 'particles';
-document.body.appendChild(canvas);
-const ctx = canvas.getContext('2d');
+import axios from 'axios';
 
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
+const appDiv = document.getElementById("app");
+const dificuldade = appDiv.dataset.dificuldade;
 
-window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-});
+const imageDiv = document.getElementById("image");
+const imageId = imageDiv.dataset.image;
 
-// Cria partículas neon
-const particles = [];
-const colors = ['#ff0066', '#00ffcc', '#ffcc00', '#ff33aa', '#00ffff'];
+let tentativas = 0;
+let codigo = "";
 
-for (let i = 0; i < 80; i++) {
-    particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 3 + 1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        dx: (Math.random() - 0.5) * 0.5,
-        dy: (Math.random() - 0.5) * 0.5
+
+document.getElementById("guess-button").addEventListener("click", function () {
+ 
+    let valor = document.getElementById("tec-select").value;
+    if(codigo == valor){
+       alert("Resposta Correta");
+       location.reload();
+    } else if(tentativas < 5){
+        document.querySelector(".container-vidas span:not(.perdida)")
+        .classList.add("perdida");
+
+        tentativas++;
+        getImage();
+
+    } else {
+        alert("Você Perdeu! Burrão do galaio");
+        location.reload();
+    }
+   
+
+})
+
+getImage();
+
+export function getImage() {
+    axios.get("/classic/image", {
+        params: {
+            dificuldade: dificuldade,
+            tentativas: tentativas,
+            tecnologia: imageId
+        }
+    }).then(res => {
+        const img = document.getElementById("guess-image");
+        img.src = res.data.image;
+
+        codigo = res.data.codigo;
     });
 }
-
-// Função de desenho e animação
-function draw() {
-    ctx.clearRect(0, 0, width, height);
-    particles.forEach(p => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = 10;
-        ctx.fill();
-
-        p.x += p.dx;
-        p.y += p.dy;
-
-        if (p.x < 0 || p.x > width) p.dx *= -1;
-        if (p.y < 0 || p.y > height) p.dy *= -1;
-    });
-
-    requestAnimationFrame(draw);
-}
-
-draw();
-document.getElementById('guess-button').addEventListener('click', () => {
-    alert('Função Adivinhar ainda não implementada!');
-});
-
-document.getElementById('select-button').addEventListener('click', () => {
-    alert('Função Select Imagem ainda não implementada!');
-});

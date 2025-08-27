@@ -287,3 +287,7 @@ body > * {
 #tec-select::-ms-expand {
     display: none;
 }
+
+.perdida {
+    display: none !important;
+}

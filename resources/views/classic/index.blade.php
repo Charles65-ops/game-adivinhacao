@@ -16,6 +16,9 @@
 </head>
 
 <body style="background-color: #303F9F">
+<div id="app" data-dificuldade="{{ $dificuldade }}"></div>
+    <div id="image" data-image="{{ $tecnologia }}"></div>
+
     <div class="container">
         <div class="row">
             <h1 class="game-name">CODLE</h1>
@@ -34,7 +37,7 @@
         <div class="select-container">
     <select id="tec-select">
         @foreach ($tecnologias as $tec)
-            <option value="{{ $tec->id }}">{{ $tec->nome }}</option>
+            <option value="{{ $tec->codigo}}">{{ $tec->nome }}</option>
         @endforeach
     </select>
 </div>
