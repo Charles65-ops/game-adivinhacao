@@ -15,7 +15,7 @@
     @vite('resources/js/classic/index.js')
 </head>
 
-<body style="background-color: #303F9F">
+<body style="background-color:rgb(151, 0, 0)">
 <div id="app" data-dificuldade="{{ $dificuldade }}"></div>
     <div id="image" data-image="{{ $tecnologia }}"></div>
 
